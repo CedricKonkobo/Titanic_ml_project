@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: titanic-ml
+Version: 0.1.0
+Summary: End-to-end ML pipeline for Titanic survival prediction
+Author: Ton Nom
+License: MIT
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: xgboost
+Requires-Dist: flask
+Dynamic: author
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
