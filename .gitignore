@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.env
+.venv
+env/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb_checkpoints/*
+
+# Data (pas de gros fichiers sur GitHub)
+data/raw/*.csv
+data/processed/*.csv
+*.csv
+!data/external/.gitkeep
+
+# Models (trop lourds)
+models/*.pkl
+models/*.joblib
+*.pkl
+*.joblib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MLflow
+mlruns/
