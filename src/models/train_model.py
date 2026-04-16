@@ -122,4 +122,4 @@ if __name__ == "__main__":
     trainer.compare_models(X, y)
     trainer.optimize_hyperparams(X, y)
     trainer.train_final(X, y)
-    trainer.save_model()
+    # trainer.save_model()
