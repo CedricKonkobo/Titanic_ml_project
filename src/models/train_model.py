@@ -111,15 +111,32 @@ if __name__ == "__main__":
     sys.path.append('.')
     from src.data.load_data import load_raw_data
     from src.features.build_features import FeatureEngineer
+    from sklearn.model_selection import train_test_split
+    from src.models.evaluate import ModelEvaluator
     
-    # Load & process
-    train, _ = load_raw_data()
+    # Load
+    train = load_raw_data()
     fe = FeatureEngineer()
-    X, y, _ = fe.fit_transform(train)
+    X, y = fe.fit_transform(train)
     
-    # # Train
+    # Split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+    
+    # Train
     trainer = ModelTrainer()
-    trainer.compare_models(X, y)
-    trainer.optimize_hyperparams(X, y)
-    trainer.train_final(X, y)
-    # trainer.save_model()
+    trainer.compare_models(X_train, y_train)
+    trainer.optimize_hyperparams(X_train, y_train)
+    trainer.train_final(X_train, y_train)
+
+    # Save Model
+    trainer.save_model()
+    model = joblib.load('models/best_model.joblib')
+
+    # Load and Eval
+    evaluator = ModelEvaluator(model, fe.preprocessor, fe.feature_names)
+    evaluator.full_report(X_test, y_test)
+    print("Evaluation complete. Check reports/figures/")
+
+    

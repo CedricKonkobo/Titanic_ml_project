@@ -5,7 +5,7 @@ setup(
     packages=find_packages(),
     version="0.1.0",
     description="End-to-end ML pipeline for Titanic survival prediction",
-    author="Ton Nom",
+    author="Cedric Konkobo",
     license="MIT",
     install_requires=[
         "pandas",

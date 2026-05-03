@@ -37,3 +37,11 @@ Thumbs.db
 
 # MLflow
 mlruns/
+
+# Packaging / build
+*.egg-info/
+build/
+dist/
+
+# JupyterLab workspace (local UI state)
+.jupyter/

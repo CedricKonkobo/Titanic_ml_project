@@ -12,7 +12,7 @@ class ModelEvaluator:
         self.feature_names = feature_names
         
     def full_report(self, X_test, y_test):
-        """Generate complete evaluation report."""
+        """Generate complete evaluation report"""
         y_pred = self.model.predict(X_test)
         y_pred_proba = self.model.predict_proba(X_test)[:, 1]
         
@@ -32,9 +32,7 @@ class ModelEvaluator:
         # Feature Importance
         self._plot_feature_importance()
         
-        # SHAP (si RandomForest ou XGBoost)
-        if hasattr(self.model, 'estimators_'):
-            self._plot_shap(X_test)
+        self._plot_shap(X_test)
             
     def _plot_confusion_matrix(self, y_true, y_pred):
         cm = confusion_matrix(y_true, y_pred)
@@ -79,43 +77,4 @@ class ModelEvaluator:
             plt.savefig('reports/figures/feature_importance.png', dpi=150)
             plt.close()
             
-    def _plot_shap(self, X_sample):
-        """SHAP values for interpretability."""
-        try:
-            explainer = shap.TreeExplainer(self.model)
-            shap_values = explainer.shap_values(X_sample)
-            
-            plt.figure(figsize=(10, 6))
-            shap.summary_plot(shap_values[1], X_sample, 
-                            feature_names=self.feature_names, 
-                            show=False)
-            plt.tight_layout()
-            plt.savefig('reports/figures/shap_summary.png', dpi=150)
-            plt.close()
-        except Exception as e:
-            print(f"SHAP error: {e}")
 
-if __name__ == "__main__":
-    import sys
-    sys.path.append('.')
-    from src.data.load_data import load_raw_data
-    from src.features.build_features import FeatureEngineer
-    from sklearn.model_selection import train_test_split
-    
-    # Load
-    train, _ = load_raw_data()
-    fe = FeatureEngineer()
-    X, y, _ = fe.fit_transform(train)
-    
-    # Split
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
-    
-    # Load model
-    model = joblib.load('models/best_model.joblib')
-    
-    # Eval
-    evaluator = ModelEvaluator(model, fe.preprocessor, fe.feature_names)
-    evaluator.full_report(X_test, y_test)
-    print("Evaluation complete. Check reports/figures/")

@@ -103,14 +103,14 @@ class FeatureEngineer:
                         .get_feature_names_out(['pclass', 'sex', 'embarked', 'title', 'ageBand', 'isAlone', 'hasCabin']))
         self.feature_names = list(self.preprocessor.transformers_[0][2]) + list(feature_names)
         
-        return X_processed, y, df
+        return X_processed, y
 
 if __name__ == "__main__":
     from src.data.load_data import load_raw_data
     
-    train, _ = load_raw_data()
+    train = load_raw_data()
     fe = FeatureEngineer()
-    X, y, df_enhanced = fe.fit_transform(train)
+    X, y = fe.fit_transform(train)
     
     print(f"Features created: {X.shape[1]}")
     print(f"Top features: {fe.feature_names[:5]}")
