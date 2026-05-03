@@ -1,8 +1,7 @@
-# Titanic Survival Prediction — ML Pipeline
+# Titanic Survival Prediction  ML Pipeline
 
-End-to-end machine learning project that predicts passenger survival on the Titanic dataset: exploratory analysis, feature engineering, model comparison (including **XGBoost**), evaluation artifacts, and a small **REST API** for inference.
+End-to-end machine learning project that predicts passenger survival on the Titanic dataset: exploratory analysis, feature engineering, model comparison (, evaluation artifacts, and a small **REST API** for inference.
 
-This repository is structured like a portfolio-ready ML codebase: clear separation between data loading, features, training, evaluation, and serving.
 
 ---
 
@@ -94,23 +93,6 @@ python src/api/api.py
 - **Health**: `GET http://localhost:5000/health`
 - **Predict**: `POST http://localhost:5000/predict` with JSON body (see docstring in `src/api/api.py` for expected fields).
 
-Optional: set `PORT` in the environment to change the listening port.
-
----
-
-## Recent Results (reference)
-
-Training metadata is stored in `models/model_metadata.json`. Example snapshot from this project: **XGBClassifier** with cross-validation score ≈ **0.736** (accuracy-oriented baseline comparison during development — always re-run training on your machine for reproducibility).
-
----
-
-## Testing & Quality
-
-```bash
-pytest
-```
-
-(Add or extend tests under `tests/` as the project grows.)
 
 ---
 
