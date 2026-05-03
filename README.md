@@ -96,12 +96,6 @@ python src/api/api.py
 
 ---
 
-## License
-
-This project is released under the **MIT License** — see `LICENSE`.
-
----
-
 ## Author
 
 Portfolio / learning project. Replace the placeholder author in `setup.py` with your name when publishing.
